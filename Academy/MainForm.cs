@@ -70,7 +70,7 @@ namespace Academy
                 (
                 "*",
                 "Groups,Directions",
-                $"direction_name LIKE N'{textBox1.Text}%'"
+                $"direction_name LIKE N'{textBox1.Text}%' OR group_name LIKE N'{textBox1.Text}%'"
                 );
             tables[1].DataSource = connector.Select(query.ToString());
         }

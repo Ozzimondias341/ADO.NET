@@ -34,6 +34,7 @@
             this.tabPageStudents = new System.Windows.Forms.TabPage();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.tabPageGroups = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dgvGroups = new System.Windows.Forms.DataGridView();
             this.tabPageDirections = new System.Windows.Forms.TabPage();
             this.dgvDirections = new System.Windows.Forms.DataGridView();
@@ -41,8 +42,6 @@
             this.dgvDisciplines = new System.Windows.Forms.DataGridView();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
             this.dgvTeachers = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.labelGroupsFilter = new System.Windows.Forms.Label();
             this.statusStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
@@ -113,7 +112,6 @@
             // 
             // tabPageGroups
             // 
-            this.tabPageGroups.Controls.Add(this.labelGroupsFilter);
             this.tabPageGroups.Controls.Add(this.textBox1);
             this.tabPageGroups.Controls.Add(this.dgvGroups);
             this.tabPageGroups.Location = new System.Drawing.Point(4, 22);
@@ -123,6 +121,14 @@
             this.tabPageGroups.TabIndex = 1;
             this.tabPageGroups.Text = "Groups";
             this.tabPageGroups.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(252, 20);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // dgvGroups
             // 
@@ -205,23 +211,6 @@
             this.dgvTeachers.Size = new System.Drawing.Size(780, 360);
             this.dgvTeachers.TabIndex = 1;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(252, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // labelGroupsFilter
-            // 
-            this.labelGroupsFilter.AutoSize = true;
-            this.labelGroupsFilter.Location = new System.Drawing.Point(264, 5);
-            this.labelGroupsFilter.Name = "labelGroupsFilter";
-            this.labelGroupsFilter.Size = new System.Drawing.Size(252, 13);
-            this.labelGroupsFilter.TabIndex = 3;
-            this.labelGroupsFilter.Text = "Введите направление обучения для фильтрации";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,7 +254,6 @@
         private System.Windows.Forms.DataGridView dgvDirections;
         private System.Windows.Forms.DataGridView dgvDisciplines;
         private System.Windows.Forms.DataGridView dgvTeachers;
-        private System.Windows.Forms.Label labelGroupsFilter;
         private System.Windows.Forms.TextBox textBox1;
     }
 }
