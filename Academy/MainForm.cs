@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Configuration;
-using System.ComponentModel.Design;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Academy
 {
@@ -63,5 +63,21 @@ namespace Academy
             toolStripStatusLabel.Text = $"{status_messages[i]}: {tables[i].RowCount - 1}";
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Query query = new Query
+                (
+                "*",
+                "Groups,Directions",
+                $"direction_name LIKE N'{textBox1.Text}%'"
+                );
+            tables[1].DataSource = connector.Select(query.ToString());
+        }
     }
 }
+
+
+//"*",
+//"Groups,Directions",
+//                $"direction_name LIKE N'{textBox1.Text}%'"

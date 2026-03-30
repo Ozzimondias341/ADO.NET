@@ -57,10 +57,27 @@ namespace DBTools
             return table;
         }
 
-        public DataTable Select(string fields, string tables, string condition = "")
+        public DataTable Select(string fields, string tables, string condition = ""/*, string groupCondition = ""*/)
         {
             string cmd = $"SELECT {fields} FROM {tables}";
             if (condition != "") cmd += $" WHERE {condition}";
+            //if(groupCondition != "")
+            //{
+            //    string[] strings = groupCondition.Split(',');
+            //    cmd += " GROUP BY";
+            //    for (int i = 0; i < strings.Length; i++) 
+            //    {
+
+            //        if(i < strings.Length - 1)
+            //        {
+            //            cmd += $" {strings[i]} THEN";
+            //        }
+            //        else
+            //        {
+            //            cmd += strings[i];
+            //        }
+            //    }
+            //}
             cmd += ";";
             return Select(cmd);
         }
