@@ -15,6 +15,8 @@ namespace Academy
 {
     public partial class MainForm : Form
     {
+        AddForm add;
+
         Query[] queries =
         {
             new Query
@@ -40,7 +42,6 @@ namespace Academy
 
 
 
-
         DBTools.Connector connector;
 
         Dictionary<string, int> d_directions;
@@ -51,10 +52,13 @@ namespace Academy
         public MainForm()
         {
             InitializeComponent();
+            
+            connector = new DBTools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
+
+            add = new AddForm(connector);
 
             tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers };
 
-            connector = new DBTools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
 
             //dgvDirections.DataSource = connector.Select("*","Directions");
             //toolStripStatusLabel.Text = $"Количество направлений обучения: {dgvDirections.Rows.Count - 1}";
@@ -86,9 +90,22 @@ namespace Academy
         private void cbStudentsDirection_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            dgvStudents.DataSource = connector.Select(queries[0].ToString() + $" AND direction={d_directions[cbStudentsDirection.SelectedItem.ToString()]}");
+            d_groups = connector.GetDictionary
+                (
+                "Groups",
+                $"direction = {d_directions[cbStudentsDirection.SelectedItem.ToString()]}"
+                );
+            cbStudentsGroup.Items.Clear();
+            cbStudentsGroup.Items.AddRange (d_groups.Keys.ToArray());
+            string str = queries[0].ToString() + $" AND direction = {d_directions[cbStudentsDirection.SelectedItem.ToString()]}";
+            dgvStudents.DataSource = connector.Select(queries[0].ToString() + $" AND direction = {d_directions[cbStudentsDirection.SelectedItem.ToString()]}");
             toolStripStatusLabel.Text = $"{status_messages[0]}: {dgvStudents.RowCount - 1}";
 
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            add.ShowDialog(this);
         }
     }
 }
