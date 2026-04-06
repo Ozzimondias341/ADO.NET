@@ -27,8 +27,9 @@ namespace Academy
                 (
                 "Students",
                 "last_name, first_name, middle_name, birth_date, email, phone, [group]",
-                $"{tbLastName.Text}, {tbFirstName.Text}, {tbMiddleName.Text}, {dtpBirthDate.Value.ToString("yyyy-MM-dd")}, {tbEmail.Text}, {tbPhone.Text}, {cbGroup.SelectedValue}"
+                $"{tbLastName.Text},{tbFirstName.Text},{tbMiddleName.Text},{dtpBirthDate.Value.ToString("yyyy-MM-dd")},{tbEmail.Text},{tbPhone.Text},{cbGroup.SelectedValue}"
                 );
+
         }
     }
 }
