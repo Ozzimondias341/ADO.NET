@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Academy.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace Academy
 {
     public partial class StudentForm : HumanForm
     {
+        internal Models.Student student;
         public StudentForm()
         {
             InitializeComponent();
@@ -21,23 +23,40 @@ namespace Academy
             cbGroup.ValueMember = "group_id";
         }
 
+        public StudentForm(int id):this()
+        {
+            DataTable data = DataBase.Connector.Select("*", "Students", $"stud_id = {id}");
+            student = new Models.Student(data.Rows[0].ItemArray);
+            human = student;
+            Extract();
+            cbGroup.SelectedValue = student.group;
+        }
+
 
         protected override void buttonOK_Click(object sender, EventArgs e)
         {
+                base.buttonOK_Click(sender, e);
 
-            Models.Student student = new Models.Student
+                student = new Models.Student
                 (
-                tbLastName.Text,
-                tbFirstName.Text,
-                tbMiddleName.Text,
-                dtpBirthDate.Value.ToString("yyyy-MM-dd"),
-                tbEmail.Text,
-                tbPhone.Text,
-                pbPhoto.Image,
+                human,
                 Convert.ToInt32(cbGroup.SelectedValue)
                 );
 
-            DataBase.Connector.Insert("Students", $"{student.GetNames()}", $"{student.GetValues()}");
+            //object id = (int)DataBase.Connector.Scalar($"SELECT stud_id FROM Students WHERE {student.GetCondition()}");
+
+
+
+            if (student.id == 0) DataBase.Connector.Insert("Students", $"{student.GetNames()}", $"{student.GetValues()}");
+            else DataBase.Connector.Update($"UPDATE Students SET {student.GetUpdateString()} WHERE stud_id = {student.id}");
+            
+            if(student.photo != null) DataBase.Connector.UploadPhoto
+                    (
+                    student.SerializePhoto(),
+                    student.id,
+                    "photo",
+                    "Students"
+                    );
 
             //DataBase.Connector.Insert
             //    (
