@@ -6,6 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.IO;
+
 
 namespace DBTools
 {
@@ -200,6 +203,29 @@ namespace DBTools
             command.ExecuteNonQuery();
             connection.Close();
 
+        }
+
+        public Image DownloadPhoto(string table, string field, int id)
+        {
+            Image photo = null;
+            string cmd = $"SELECT {field} FROM {table} WHERE {GetPrimaryKeyColumnName(table)}={id}";
+            SqlCommand command = new SqlCommand (cmd, connection);
+            connection.Open ();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                byte[] data = reader[0] as byte[];
+                if (data != null)
+                {
+                    MemoryStream ms = new MemoryStream(data);
+                    photo = Image.FromStream(ms);
+                }
+            }
+
+            connection.Close();
+            return photo;
         }
 
     }

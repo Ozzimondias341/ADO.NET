@@ -1,14 +1,1 @@
-﻿SELECT COLUMN_NAME
-FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-WHERE TABLE_NAME = N'Movies' 
---AND CONSTRAINT_NAME =
---(
---SELECT CONSTRAINT_NAME
---FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
---WHERE TABLE_NAME = N'Movies' AND CONSTRAINT_TYPE = 'PRIMARY KEY'
---)
-AND CONSTRAINT_NAME LIKE N'PK_%'
-;
-
---SELECT *
---FROM INFORMATION_SCHEMA.COLUMNS;
+﻿UPDATE Students SET last_name = N'Сивков',first_name = N'Егор',middle_name = N'Сергеевич',birth_date = N'1992-10-09',email = N'',phone = N'                ',[group] = 3 WHERE stud_id = 1

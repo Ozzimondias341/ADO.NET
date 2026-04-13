@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HumanForm));
             this.labelLastName = new System.Windows.Forms.Label();
             this.labelFirstName = new System.Windows.Forms.Label();
             this.labelMiddleName = new System.Windows.Forms.Label();
@@ -131,8 +130,7 @@
             // 
             // pbPhoto
             // 
-            this.pbPhoto.Image = ((System.Drawing.Image)(resources.GetObject("pbPhoto.Image")));
-            this.pbPhoto.Location = new System.Drawing.Point(441, 12);
+            this.pbPhoto.Location = new System.Drawing.Point(441, 9);
             this.pbPhoto.Name = "pbPhoto";
             this.pbPhoto.Size = new System.Drawing.Size(181, 216);
             this.pbPhoto.TabIndex = 9;
@@ -147,6 +145,7 @@
             this.buttonBrowse.TabIndex = 10;
             this.buttonBrowse.Text = "Обзор";
             this.buttonBrowse.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
             // 
             // tbEmail
             // 
