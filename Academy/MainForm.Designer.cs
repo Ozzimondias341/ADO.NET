@@ -44,8 +44,8 @@
             this.tabPageDisciplines = new System.Windows.Forms.TabPage();
             this.dgvDisciplines = new System.Windows.Forms.DataGridView();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
-            this.dgvTeachers = new System.Windows.Forms.DataGridView();
             this.buttonAddTeacher = new System.Windows.Forms.Button();
+            this.dgvTeachers = new System.Windows.Forms.DataGridView();
             this.statusStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
@@ -243,6 +243,16 @@
             this.tabPageTeachers.Text = "Teachers";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
             // 
+            // buttonAddTeacher
+            // 
+            this.buttonAddTeacher.Location = new System.Drawing.Point(703, 0);
+            this.buttonAddTeacher.Name = "buttonAddTeacher";
+            this.buttonAddTeacher.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddTeacher.TabIndex = 2;
+            this.buttonAddTeacher.Text = "Добавить";
+            this.buttonAddTeacher.UseVisualStyleBackColor = true;
+            this.buttonAddTeacher.Click += new System.EventHandler(this.buttonAddTeacher_Click);
+            // 
             // dgvTeachers
             // 
             this.dgvTeachers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -254,16 +264,7 @@
             this.dgvTeachers.Name = "dgvTeachers";
             this.dgvTeachers.Size = new System.Drawing.Size(780, 360);
             this.dgvTeachers.TabIndex = 1;
-            // 
-            // buttonAddTeacher
-            // 
-            this.buttonAddTeacher.Location = new System.Drawing.Point(703, 0);
-            this.buttonAddTeacher.Name = "buttonAddTeacher";
-            this.buttonAddTeacher.Size = new System.Drawing.Size(75, 23);
-            this.buttonAddTeacher.TabIndex = 2;
-            this.buttonAddTeacher.Text = "Добавить";
-            this.buttonAddTeacher.UseVisualStyleBackColor = true;
-            this.buttonAddTeacher.Click += new System.EventHandler(this.buttonAddTeacher_Click);
+            this.dgvTeachers.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTeachers_CellMouseDoubleClick);
             // 
             // MainForm
             // 
